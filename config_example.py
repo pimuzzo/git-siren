@@ -10,5 +10,5 @@ SLEEP_SECONDS = 60
 LIGHT_SECONDS = 2
 # Couples <username, repository>
 REPOSITORIES = [
-    ('pimuzzo', 'test'),
+    ('pimuzzo', 'git-siren'),
 ]
