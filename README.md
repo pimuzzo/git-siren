@@ -1,6 +1,6 @@
 # Git Siren
 
-This aim of this project is to turn on a REAL emergency siren light when a new urgent issue is created!
+The aim of this project is to turn on a REAL emergency siren light when a new urgent issue is created!
 
 ## What do you need:
 - Raspberry Pi
@@ -13,8 +13,8 @@ This aim of this project is to turn on a REAL emergency siren light when a new u
 ## Schema:
 ![Schema](http://i.imgur.com/riv5JDl.png)
 
-Wiring Raspberry PI to relay depends by your raspberrypi GPIO schema and your relay schema, you can find them online.
-You need 3 wires, gnd, 5V, signal.
+Wiring Raspberry Pi to relay depends by your Raspberry Pi GPIO schema and your relay schema, you can find them online.
+You need 3 wires: GND, 5V and signal.
 In my script signal is on pin 17.
 
 ## Configuration:
