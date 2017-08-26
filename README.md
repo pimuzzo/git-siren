@@ -28,7 +28,7 @@ You can also use only `python siren.py [port]` and make a POST:
 
 `http -f POST http://localhost:8080/light actor=my_test duration=3`
 
-I manage it with <a href="http://supervisord.org/" target="_blank">supervisord</a> on Raspbian.
+I manage it with [supervisord](http://supervisord.org/) on Raspbian.
 
 ## Still to do:
 - Ansible script to install and configure supervisor
