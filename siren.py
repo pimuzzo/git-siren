@@ -15,13 +15,17 @@ urls = (
 )
 
 
+# supervisord -c /etc/supervisord.conf
+# sudo supervisorctl -c /etc/supervisord.conf reload
+
+
 class light:
     def POST(self):
         i = web.input()
-        return hit_the_light(i.duration, i.actor)
+        return turn_on_the_light(i.duration, i.actor)
 
 
-def hit_the_light(duration, actor):
+def turn_on_the_light(duration, actor):
     logging.info('New light request by {} for {} seconds'.format(actor, duration))
     relay = DigitalOutputDevice(17)
     relay.on()
