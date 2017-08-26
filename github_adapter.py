@@ -7,7 +7,7 @@ import time
 import github3
 import requests
 
-from config import LEVEL, GITHUB_TOKEN, SLEEP_SECONDS, LIGHT_SECONDS, REPOSITORIES
+from config import LEVEL, GITHUB_TOKEN, SLEEP_SECONDS, LIGHT_SECONDS, BASE_URL, LABELS, REPOSITORIES
 
 gh = github3.login(token=GITHUB_TOKEN)
 urgent_tickets = set()
@@ -20,7 +20,7 @@ def check_and_send_light_request(urgent_ticket):
         # request to beacon light
         logging.info('New urgent ticket found: {}'.format(urgent_ticket))
         payload = {'actor': 'github_adapter', 'duration': LIGHT_SECONDS}
-        requests.post('http://localhost:8080/light', data=payload)
+        requests.post(BASE_URL + '/light', data=payload)
 
 
 if __name__ == '__main__':
@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     while True:
         for username, repository in REPOSITORIES:
-            issues = gh.issues_on(username, repository, state='open', labels='urgent')
+            issues = gh.issues_on(username, repository, state='open', labels=LABELS)
             for issue in issues:
                 # if the ticket wasn't in `urgent_tickets` send request to beacon light
                 urgent_ticket = username + '/' + repository + '#' + str(issue.number)
