@@ -1,6 +1,5 @@
 # Git Siren
-
-The aim of this project is to turn on a REAL emergency siren light when a new urgent issue is created!
+The aim of this project is to turn on a REAL beacon light when a new urgent issue is created on github!
 
 ## What do you need:
 - Raspberry Pi
@@ -20,10 +19,20 @@ In my script signal is on pin 17.
 ## Configuration:
 You need to take inspiration from `config_example.py` and create your own `config.py` file.
 
+## Usage:
+With `python siren.py [port]` you will manage the beacon light (default port is 8080).
+
+With `python github_adapter.py` you will check for new issues and a POST request will be sent when a new issue will be found.
+
+You can also use only `python siren.py [port]` and make a POST:
+
+`http -f POST http://localhost:8080/light actor=my_test duration=3`
+
 I manage it with supervisord on Raspbian.
 
 ## Still to do:
 - Ansible script to install and configure supervisor
 - recognise urgent from PR rather than from issue
+- split the project in 2 parts
 
 Any help (PR) is really appreciated
