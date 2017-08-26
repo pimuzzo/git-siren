@@ -25,6 +25,5 @@ I manage it with supervisord on Raspbian.
 ## Still to do:
 - Ansible script to install and configure supervisor
 - recognise urgent from PR rather than from issue
-- virtual env / pip freeze
 
 Any help (PR) is really appreciated
