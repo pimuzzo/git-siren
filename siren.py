@@ -9,6 +9,7 @@ from gpiozero import DigitalOutputDevice
 
 from config import LEVEL
 
+web.config.debug = False
 urls = (
     '/light', 'light'
 )
