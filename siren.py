@@ -22,7 +22,8 @@ urls = (
 class light:
     def POST(self):
         i = web.input()
-        return turn_on_the_light(i.duration, i.actor)
+        turn_on_the_light(i.duration, i.actor)
+        return web.nocontent()
 
 
 def turn_on_the_light(duration, actor):
