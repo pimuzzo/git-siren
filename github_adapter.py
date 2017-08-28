@@ -20,7 +20,7 @@ def check_and_send_light_request(urgent_ticket):
         # request to beacon light
         logging.info('New urgent ticket found: {}'.format(urgent_ticket))
         payload = {'actor': 'github_adapter', 'duration': LIGHT_SECONDS}
-        requests.post(BASE_URL + '/light', data=payload)
+        requests.post(BASE_URL + '/light', json=payload)
 
 
 if __name__ == '__main__':

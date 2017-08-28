@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import json
 import logging
 import sys
 import time
@@ -21,8 +22,10 @@ urls = (
 
 class light:
     def POST(self):
-        i = web.input()
-        turn_on_the_light(i.duration, i.actor)
+        data = json.loads(web.data() or '{}')
+        if not 'duration' in data or not 'actor' in data:
+            return web.badrequest()
+        turn_on_the_light(data['duration'] or 1, data['actor'])
         return web.nocontent()
 
 

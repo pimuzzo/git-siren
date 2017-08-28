@@ -26,7 +26,7 @@ With `python github_adapter.py` you will check for new issues and a POST request
 
 You can also use only `python siren.py [port]` and make a POST:
 
-`http -f POST http://localhost:8080/light actor=my_test duration=3`
+`http POST http://localhost:8080/light actor=my_test duration=3`
 
 I manage it with [supervisord](http://supervisord.org/) on Raspbian.
 
