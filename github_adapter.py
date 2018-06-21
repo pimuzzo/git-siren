@@ -24,15 +24,18 @@ def main():
     old_tickets = set()
     new_tickets = set()
     while True:
-        for username, repository in REPOSITORIES:
-            issues = gh.issues_on(username, repository, state='open', labels=LABELS)
-            for issue in issues:
-                ticket = username + '/' + repository + '#' + str(issue.number)
-                new_tickets.add(ticket)
-        check_and_send_light_request(new_tickets, old_tickets)
-        old_tickets = new_tickets.copy()
-        logging.info(old_tickets)
-        new_tickets.clear()
+        try:
+            for username, repository in REPOSITORIES:
+                issues = gh.issues_on(username, repository, state='open', labels=LABELS)
+                for issue in issues:
+                    ticket = username + '/' + repository + '#' + str(issue.number)
+                    new_tickets.add(ticket)
+            check_and_send_light_request(new_tickets, old_tickets)
+            old_tickets = new_tickets.copy()
+            logging.info(old_tickets)
+            new_tickets.clear()
+        except requests.exceptions.RequestException as e:
+            logging.error(e)
         time.sleep(SLEEP_SECONDS)
 
 
