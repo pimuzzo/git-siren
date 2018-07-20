@@ -7,7 +7,7 @@ import time
 import github3
 import requests
 
-from config import LEVEL, GITHUB_TOKEN, SLEEP_SECONDS, LIGHT_SECONDS, BASE_URL, LABELS, REPOSITORIES
+from config import LEVEL, GITHUB_TOKEN, SLEEP_SECONDS, LIGHT_SECONDS, BASE_URL, DEFAULT_LABELS, REPOSITORIES
 
 gh = github3.login(token=GITHUB_TOKEN)
 
@@ -25,8 +25,11 @@ def main():
     new_tickets = set()
     while True:
         try:
-            for username, repository in REPOSITORIES:
-                issues = gh.issues_on(username, repository, state='open', labels=LABELS)
+            for repository_data in REPOSITORIES:
+                username = repository_data.get('username')
+                repository = repository_data.get('repository')
+                labels = repository_data.get('labels') or DEFAULT_LABELS
+                issues = gh.issues_on(username, repository, state='open', labels=labels)
                 for issue in issues:
                     ticket = username + '/' + repository + '#' + str(issue.number)
                     new_tickets.add(ticket)

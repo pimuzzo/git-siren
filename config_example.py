@@ -10,9 +10,10 @@ SLEEP_SECONDS = 60
 LIGHT_SECONDS = 2
 # Base URL
 BASE_URL = 'http://localhost:8080'
-# Comma-separated list of label names (AND filter)
-LABELS = 'urgent'
-# Couples <username, repository>
+# Comma-separated list of default label names (AND filter)
+DEFAULT_LABELS = 'urgent'
+# Object containing informations about repositories
 REPOSITORIES = [
-    ('pimuzzo', 'git-siren'),
+    {'username': 'pimuzzo', 'repository': 'git-siren'},
+    {'username': 'pimuzzo', 'repository': 'another-repo', 'labels': 'bug'},
 ]
