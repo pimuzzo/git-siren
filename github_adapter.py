@@ -37,7 +37,7 @@ def main():
             old_tickets = new_tickets.copy()
             logging.info(old_tickets)
             new_tickets.clear()
-        except requests.exceptions.RequestException as e:
+        except (requests.exceptions.RequestException, github3.exceptions.ServerError) as e:
             logging.error(e)
         time.sleep(SLEEP_SECONDS)
 
