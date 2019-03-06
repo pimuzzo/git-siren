@@ -12,7 +12,7 @@ from config import LEVEL
 
 web.config.debug = False
 urls = (
-    '/light', 'light'
+    '/light', 'Light'
 )
 
 
@@ -20,9 +20,12 @@ urls = (
 # sudo supervisorctl -c /etc/supervisord.conf reload
 
 
-class light:
+class Light:
     def POST(self):
-        data = json.loads(web.data() or '{}')
+        web_data = '{}'
+        if web.data():
+            web_data = web.data().decode('utf-8')
+        data = json.loads(web_data)
         if not 'duration' in data or not 'actor' in data:
             return web.badrequest()
         turn_on_the_light(data['duration'] or 1, data['actor'])
